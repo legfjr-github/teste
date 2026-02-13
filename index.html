@@ -509,10 +509,10 @@
         "CASF": {
             name: "CASF / Seção de Frequência",
             subtitle: "Coordenação de Assentamento Funcional",
-            when: "Procure este setor para questões de ponto eletrônico, férias e licenças iniciais (gestante, saúde, etc).",
+            when: "Procure este setor para questões de ponto eletrônico, férias, licença prêmio e licenças iniciais.",
             what: [
                 "Controle de Frequência e Ponto",
-                "Registro de Férias",
+                "Registro de Férias e Licença Prêmio",
                 "Licença Gestante e Paternidade",
                 "Licença Gala e Nojo"
             ],
@@ -524,14 +524,14 @@
             ]
         },
         "SIF": {
-            name: "SIF - Seção de Informações Funcionais",
+            name: "CASF / Seção de Informações Funcionais",
             subtitle: "Coordenação de Assentamento Funcional (CASF)",
-            when: "Procure a SIF para solicitar declarações funcionais, averbação de tempo de serviço e licença prêmio.",
+            when: "Procure a SIF para solicitar declarações funcionais, averbação de tempo de serviço e informações da pasta.",
             what: [
                 "Declarações de Vínculo",
                 "Averbação de Tempo de Serviço",
-                "Licença Prêmio",
-                "Informações da Pasta Funcional"
+                "Informações da Pasta Funcional",
+                "Histórico de Licenças e Afastamentos"
             ],
             contacts: [
                 { type: "Telefone", val: "(81) 2126-7084" },
@@ -658,10 +658,10 @@
             id: 6,
             text: "O que você precisa registrar ou solicitar?",
             options: [
-                { text: "Assuntos de Ponto, Faltas ou Homologação de Férias", result: "CASF" },
+                { text: "Assuntos de Ponto, Faltas, Férias ou Licença Prêmio", result: "CASF" },
                 { text: "Licença Gestante, Paternidade, Casamento ou Óbito", result: "CASF" },
-                { text: "Declarações Funcionais (Vínculo) e Tempo de Serviço", result: "SIF" },
-                { text: "Carteira Funcional", result: "CASF" }
+                { text: "Declarações Funcionais (Vínculo) e Averbação de Tempo", result: "SIF" }
+                // Opção Carteira Funcional removida
             ]
         }
     ];
