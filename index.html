@@ -28,88 +28,35 @@
         .container {
             width: 100%;
             max-width: 900px;
-            background: transparent;
         }
 
-        /* Estilos do Quiz (Perguntas) */
-        .quiz-box {
+        /* --- ESTILOS COMPARTILHADOS (QUIZ E RESULTADO) --- */
+        
+        /* A caixa base do Card */
+        .card-style {
             background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px; /* Bordas levemente arredondadas no card geral */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow: hidden; /* Importante para o cabeçalho não vazar */
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .quiz-title {
-            color: var(--ufpe-blue);
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-
-        .question {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn-option {
-            padding: 15px 20px;
-            background-color: var(--ufpe-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-
-        .btn-option:hover {
-            background-color: #002a52;
-        }
-
-        /* Estilos do Card de Resultado (Baseado na imagem enviada) */
-        .result-card {
-            display: none; /* Escondido inicialmente */
-            background: white;
-            border-radius: 0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Cabeçalho do Card */
+        /* Cabeçalho (Logo + Texto) */
         .card-header {
             background: white;
-            padding: 15px 20px;
+            padding: 15px 25px;
             display: flex;
             align-items: center;
             border-bottom: 4px solid var(--ufpe-blue);
+            text-align: left; /* Garante alinhamento à esquerda */
         }
 
         .card-logo {
-            width: 60px;
+            width: 60px; /* Tamanho ajustável do logo */
             height: auto;
             margin-right: 15px;
-        }
-        
-        /* Placeholder para logo da UFPE caso não carregue */
-        .logo-placeholder {
-            width: 50px;
-            height: 50px;
-            background: var(--ufpe-red);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-right: 15px;
+            object-fit: contain;
         }
 
         .header-text h1 {
@@ -117,6 +64,7 @@
             font-size: 1.5rem;
             margin: 0;
             font-weight: 800;
+            line-height: 1.1;
         }
 
         .header-text h2 {
@@ -124,14 +72,15 @@
             font-size: 1.2rem;
             margin: 0;
             font-weight: 600;
+            line-height: 1.1;
         }
 
-        /* Faixa de Título do Setor */
+        /* Faixa Azul de Título */
         .sector-banner {
             background-color: var(--ufpe-blue);
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 20px;
         }
 
         .sector-title {
@@ -142,46 +91,106 @@
         }
 
         .sector-subtitle {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-top: 5px;
             font-weight: normal;
             opacity: 0.9;
         }
 
+        /* Faixa Vermelha de Rodapé */
         .sector-red-strip {
             background-color: var(--ufpe-red);
             color: white;
             text-align: center;
             font-size: 0.85rem;
-            padding: 5px;
+            padding: 8px;
+            font-weight: 500;
         }
 
-        /* Corpo do Card (Grid de 3 colunas) */
-        .card-body {
+        /* --- ESTILOS ESPECÍFICOS DO QUIZ --- */
+
+        .quiz-content-area {
+            padding: 30px;
+            background-color: #fff;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 0; /* Margem controlada pelo container */
+            font-weight: 600;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 600px;
+            margin: 0 auto; /* Centraliza os botões */
+        }
+
+        .btn-option {
+            padding: 15px 20px;
+            background-color: var(--ufpe-blue); /* Azul UFPE */
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-option:hover {
+            background-color: white;
+            color: var(--ufpe-blue);
+            border-color: var(--ufpe-blue);
+            box-shadow: 0 2px 8px rgba(0,59,113,0.2);
+        }
+        
+        .btn-option::after {
+            content: '➔';
+            font-size: 1.2rem;
+            opacity: 0.5;
+            margin-left: 10px;
+        }
+        .btn-option:hover::after {
+            opacity: 1;
+        }
+
+        /* --- ESTILOS ESPECÍFICOS DO RESULTADO --- */
+
+        .card-body-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
+            gap: 15px;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: #f4f6f9;
         }
 
         @media (max-width: 768px) {
-            .card-body {
+            .card-body-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         .col-box {
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
             overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
         }
 
         .col-header {
             background-color: var(--ufpe-blue);
             color: white;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             font-weight: bold;
             font-size: 1rem;
@@ -189,9 +198,10 @@
 
         .col-content {
             padding: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #444;
-            height: 100%;
+            flex-grow: 1;
+            text-align: left;
         }
 
         /* Lista de atribuições */
@@ -202,9 +212,10 @@
         }
 
         .check-list li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
+            line-height: 1.4;
         }
 
         .check-list li::before {
@@ -215,49 +226,47 @@
             font-weight: bold;
         }
 
-        /* Ícone central */
         .icon-center {
             text-align: center;
             margin-bottom: 15px;
         }
         .icon-center svg {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             fill: var(--ufpe-red);
         }
 
-        /* Contatos */
         .contact-item {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .contact-item:last-child {
+            border-bottom: none;
         }
 
         .contact-icon {
-            margin-right: 10px;
-            color: var(--ufpe-red);
-            font-size: 1.2rem;
+            margin-right: 12px;
+            min-width: 24px;
         }
 
-        .contact-info strong {
-            display: block;
-            color: var(--ufpe-blue);
-        }
-
-        /* Rodapé de reinício */
+        /* Botão de Reinício */
         .restart-container {
             text-align: center;
             margin-top: 20px;
         }
         
         .btn-restart {
-            background: white;
+            background: transparent;
             border: 2px solid var(--ufpe-blue);
             color: var(--ufpe-blue);
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 10px 30px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 1rem;
             transition: all 0.3s;
         }
         
@@ -271,24 +280,49 @@
 <body>
 
 <div class="container">
-    <!-- SEÇÃO DO QUIZ -->
-    <div id="quiz-container" class="quiz-box">
-        <h2 class="quiz-title">Orientação PROGEPE</h2>
-        <div id="question-text" class="question">Carregando pergunta...</div>
-        <div id="options-container" class="options">
-            <!-- Botões gerados via JS -->
+    
+    <!-- === SEÇÃO DO QUIZ (PERGUNTAS) === -->
+    <div id="quiz-container" class="card-style">
+        
+        <!-- Cabeçalho (Estética unificada) -->
+        <div class="card-header">
+            <!-- LOGO AQUI -->
+            <img src="UFPELOGO.png" alt="Logo UFPE" class="card-logo">
+            
+            <div class="header-text">
+                <h1>UFPE</h1>
+                <h2>PROGEPE</h2>
+            </div>
+        </div>
+
+        <!-- Faixa de Título / Pergunta -->
+        <div class="sector-banner">
+            <div class="sector-title">Orientação ao Servidor</div>
+            <div id="question-text" class="sector-subtitle question-text" style="color: white; margin-top: 10px; font-size: 1.2rem;">Carregando pergunta...</div>
+        </div>
+
+        <!-- Área de Opções -->
+        <div class="quiz-content-area">
+            <div id="options-container" class="options">
+                <!-- Botões gerados via JS -->
+            </div>
+        </div>
+
+        <!-- Faixa Vermelha Rodapé -->
+        <div class="sector-red-strip">
+            Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
         </div>
     </div>
 
-    <!-- SEÇÃO DO CARD DE RESULTADO (Estilo da Imagem) -->
-    <div id="result-container" class="result-card">
+
+    <!-- === SEÇÃO DO CARD DE RESULTADO === -->
+    <div id="result-container" class="card-style" style="display: none;">
         
-        <!-- Topo com Logo -->
-        <!-- Topo com Logo -->
+        <!-- Cabeçalho -->
         <div class="card-header">
-            <!-- Linha substituída abaixo: -->
+            <!-- LOGO AQUI -->
             <img src="UFPELOGO.png" alt="Logo UFPE" class="card-logo">
-            
+
             <div class="header-text">
                 <h1>UFPE</h1>
                 <h2>PROGEPE</h2>
@@ -301,13 +335,13 @@
             <div id="res-sector-desc" class="sector-subtitle">Descrição curta do setor</div>
         </div>
 
-        <!-- Faixa Vermelha -->
+        <!-- Faixa Vermelha Intermediária -->
         <div class="sector-red-strip">
             Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
         </div>
 
         <!-- Corpo com 3 Colunas -->
-        <div class="card-body">
+        <div class="card-body-grid">
             
             <!-- Coluna 1: Quando procurar -->
             <div class="col-box">
@@ -317,7 +351,7 @@
                         <!-- Ícone de Bússola Simplificado -->
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 9.99 9.99 6.5 17.5zm5.5-6.6c.61 0 1.1.49 1.1 1.1s-.49 1.1-1.1 1.1-1.1-.49-1.1-1.1.49-1.1 1.1-1.1z"/></svg>
                     </div>
-                    <p id="res-when">Procure este setor quando...</p>
+                    <p id="res-when" style="line-height: 1.5;">Procure este setor quando...</p>
                 </div>
             </div>
 
@@ -339,7 +373,7 @@
                     <div id="res-contacts">
                         <!-- Inserido via JS -->
                     </div>
-                    <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; font-size: 0.8rem; color: #666;">
+                    <div style="margin-top: 20px; font-size: 0.8rem; color: #888; text-align: center;">
                         <i>Atendimento: Consulte o horário específico da unidade.</i>
                     </div>
                 </div>
@@ -348,14 +382,16 @@
         </div>
     </div>
 
-    <!-- Botão de Reinício (aparece com o resultado) -->
+    <!-- Botão de Reinício -->
     <div id="restart-box" class="restart-container" style="display: none;">
         <button class="btn-restart" onclick="restartQuiz()">Nova Consulta</button>
     </div>
+
 </div>
 
 <script>
-    // --- BASE DE DADOS DOS SETORES (Extraído do Manual.txt) ---
+    // --- BASE DE DADOS DOS SETORES ---
+    // (Mantida idêntica à versão anterior)
     const sectorsData = {
         "CAPE": {
             name: "CAPE - Coordenação de Aposentadoria e Pensão",
@@ -553,6 +589,7 @@
     };
 
     // --- LÓGICA DO QUIZ (Árvore de Decisão) ---
+    // (Mantida idêntica à versão anterior)
     const questions = [
         {
             id: 0,
@@ -576,7 +613,7 @@
                 { text: "Auxílio Saúde (Ressarcimento) ou Plano de Saúde", result: "DQV" },
                 { text: "Adicional de Insalubridade, Periculosidade ou Raio-X", result: "COSAIP_CORAX" },
                 { text: "Tenho dois empregos públicos e preciso verificar a acumulação", result: "CACE" },
-                { text: "Auxílio Natalidade ou Pré-Escolar", result: "CPP" } // Text says CPP/CASF handle specifics, sticking to CPP for payment logic usually, but text says CASF for Preschool. Let's adjust based on text: CASF is responsible for Pre-School but CPP pays. Text puts Pre-School under CASF contact section.
+                { text: "Auxílio Natalidade ou Pré-Escolar", result: "CPP" }
             ]
         },
         // Ramo Saúde (2)
@@ -585,7 +622,7 @@
             text: "Qual tipo de atendimento de saúde?",
             options: [
                 { text: "Atestado médico, perícia ou licença saúde/familiar", result: "NASS" },
-                { text: "Segurança do trabalho (EPI, Riscos Ambientais)", result: "COSAIP_CORAX" }, // Or SESST based on contact list, but COSAIP is main hazard adder
+                { text: "Segurança do trabalho (EPI, Riscos Ambientais)", result: "COSAIP_CORAX" },
                 { text: "Ressarcimento de Plano de Saúde", result: "DQV" }
             ]
         },
@@ -627,7 +664,7 @@
                 { text: "Assuntos de Ponto, Faltas ou Homologação de Férias", result: "CASF" },
                 { text: "Licença Gestante, Paternidade, Casamento ou Óbito", result: "CASF" },
                 { text: "Declarações Funcionais (Vínculo, etc)", result: "CASF" },
-                { text: "Carteira Funcional", result: "CASF" } // Assuming CASF/DAP general attendance
+                { text: "Carteira Funcional", result: "CASF" }
             ]
         }
     ];
@@ -662,19 +699,16 @@
     }
 
     function showResult(sectorKey) {
-        // Esconde Quiz, Mostra Resultado
         document.getElementById('quiz-container').style.display = 'none';
         document.getElementById('result-container').style.display = 'block';
         document.getElementById('restart-box').style.display = 'block';
 
         const data = sectorsData[sectorKey];
 
-        // Preenche o Card
         document.getElementById('res-sector-name').innerText = data.name;
         document.getElementById('res-sector-desc').innerText = data.subtitle;
         document.getElementById('res-when').innerText = data.when;
 
-        // Lista de "O que faz"
         const whatList = document.getElementById('res-what');
         whatList.innerHTML = '';
         data.what.forEach(item => {
@@ -683,28 +717,25 @@
             whatList.appendChild(li);
         });
 
-        // Contatos
         const contactsDiv = document.getElementById('res-contacts');
         contactsDiv.innerHTML = '';
         data.contacts.forEach(c => {
             const div = document.createElement('div');
             div.className = 'contact-item';
             
-            // Ícone baseado no tipo
             let iconSvg = '';
             if(c.type.includes("Telefone") || c.type.includes("WhatsApp")) {
                 iconSvg = '<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>';
             } else if(c.type.includes("Email")) {
                 iconSvg = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>';
             } else {
-                // Generic info icon
                 iconSvg = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>';
             }
 
             div.innerHTML = `
                 <div class="contact-icon" style="width: 24px; height: 24px; fill: var(--ufpe-red);">${iconSvg}</div>
                 <div class="contact-info">
-                    <strong>${c.type}:</strong> ${c.val}
+                    <strong style="color: var(--ufpe-blue);">${c.type}:</strong> ${c.val}
                 </div>
             `;
             contactsDiv.appendChild(div);
