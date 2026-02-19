@@ -24,14 +24,12 @@
             min-height: 100vh;
         }
 
-        /* Container Principal */
         .container {
             width: 100%;
             max-width: 900px;
         }
 
-        /* --- ESTILOS COMPARTILHADOS (QUIZ E RESULTADO) --- */
-        
+        /* --- ESTILOS GERAIS DOS CARDS --- */
         .card-style {
             background: var(--white);
             border-radius: 8px;
@@ -41,13 +39,11 @@
             margin-bottom: 20px;
         }
 
-        /* Cabeçalho (Logo + Texto) */
         .card-header {
             background: white;
             padding: 15px 25px;
             display: flex;
             align-items: center;
-            border-bottom: 4px solid var(--ufpe-blue);
             text-align: left;
         }
 
@@ -67,20 +63,106 @@
         }
 
         .header-text h2 {
-            color: var(--ufpe-blue);
             font-size: 1.2rem;
             margin: 0;
             font-weight: 600;
             line-height: 1.1;
         }
 
-        /* Faixa Azul de Título */
-        .sector-banner {
+        /* --- ESTILOS ESPECÍFICOS DO QUIZ (VERMELHO) --- */
+        
+        /* Borda do cabeçalho vermelha */
+        .quiz-header-border {
+            border-bottom: 4px solid var(--ufpe-red);
+        }
+
+        /* Texto PROGEPE vermelho no cabeçalho */
+        .text-red {
+            color: var(--ufpe-red);
+        }
+
+        /* Banner de Título Vermelho */
+        .quiz-banner {
+            background-color: var(--ufpe-red);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Rodapé Azul (para contrastar com o vermelho do corpo) */
+        .quiz-footer-strip {
+            background-color: var(--ufpe-blue);
+            color: white;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 8px;
+            font-weight: 500;
+        }
+
+        /* Botões Vermelhos */
+        .btn-quiz {
+            padding: 15px 20px;
+            background-color: var(--ufpe-red);
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-quiz:hover {
+            background-color: white;
+            color: var(--ufpe-red);
+            border-color: var(--ufpe-red);
+            box-shadow: 0 2px 8px rgba(179, 0, 0, 0.2);
+        }
+        
+        .btn-quiz::after {
+            content: '➔';
+            font-size: 1.2rem;
+            opacity: 0.5;
+            margin-left: 10px;
+        }
+        .btn-quiz:hover::after {
+            opacity: 1;
+        }
+
+        /* --- ESTILOS ESPECÍFICOS DO RESULTADO (AZUL - Mantido Original) --- */
+
+        /* Borda do cabeçalho azul */
+        .result-header-border {
+            border-bottom: 4px solid var(--ufpe-blue);
+        }
+
+        /* Texto PROGEPE azul no cabeçalho */
+        .text-blue {
+            color: var(--ufpe-blue);
+        }
+
+        /* Banner de Título Azul */
+        .result-banner {
             background-color: var(--ufpe-blue);
             color: white;
             text-align: center;
             padding: 20px;
         }
+
+        /* Rodapé Vermelho */
+        .result-footer-strip {
+            background-color: var(--ufpe-red);
+            color: white;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 8px;
+            font-weight: 500;
+        }
+
+        /* --- LAYOUTS INTERNOS --- */
 
         .sector-title {
             font-size: 1.4rem;
@@ -95,18 +177,6 @@
             font-weight: normal;
             opacity: 0.9;
         }
-
-        /* Faixa Vermelha de Rodapé */
-        .sector-red-strip {
-            background-color: var(--ufpe-red);
-            color: white;
-            text-align: center;
-            font-size: 0.85rem;
-            padding: 8px;
-            font-weight: 500;
-        }
-
-        /* --- ESTILOS ESPECÍFICOS DO QUIZ --- */
 
         .quiz-content-area {
             padding: 30px;
@@ -127,40 +197,6 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
-        .btn-option {
-            padding: 15px 20px;
-            background-color: var(--ufpe-blue);
-            color: white;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .btn-option:hover {
-            background-color: white;
-            color: var(--ufpe-blue);
-            border-color: var(--ufpe-blue);
-            box-shadow: 0 2px 8px rgba(0,59,113,0.2);
-        }
-        
-        .btn-option::after {
-            content: '➔';
-            font-size: 1.2rem;
-            opacity: 0.5;
-            margin-left: 10px;
-        }
-        .btn-option:hover::after {
-            opacity: 1;
-        }
-
-        /* --- ESTILOS ESPECÍFICOS DO RESULTADO --- */
 
         .card-body-grid {
             display: grid;
@@ -279,60 +315,67 @@
 
 <div class="container">
     
-    <!-- === SEÇÃO DO QUIZ (PERGUNTAS) === -->
+    <!-- === SEÇÃO DO QUIZ (ESTILO VERMELHO) === -->
     <div id="quiz-container" class="card-style">
         
-        <div class="card-header">
-            <!-- LOGO AQUI -->
+        <!-- Cabeçalho com borda VERMELHA -->
+        <div class="card-header quiz-header-border">
             <img src="UFPELOGO.png" alt="Logo UFPE" class="card-logo">
             
             <div class="header-text">
                 <h1>UFPE</h1>
-                <h2>PROGEPE</h2>
+                <!-- Texto PROGEPE Vermelho -->
+                <h2 class="text-red">PROGEPE</h2>
             </div>
         </div>
 
-        <div class="sector-banner">
+        <!-- Faixa de Título VERMELHA -->
+        <div class="quiz-banner">
             <div class="sector-title">Orientação ao Servidor</div>
             <div id="question-text" class="sector-subtitle question-text" style="color: white; margin-top: 10px; font-size: 1.2rem;">Carregando pergunta...</div>
         </div>
 
+        <!-- Área de Opções -->
         <div class="quiz-content-area">
             <div id="options-container" class="options">
-                <!-- Botões gerados via JS -->
+                <!-- Botões gerados via JS (Classe btn-quiz) -->
             </div>
         </div>
 
-        <div class="sector-red-strip">
+        <!-- Rodapé AZUL (Contraste) -->
+        <div class="quiz-footer-strip">
             Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
         </div>
     </div>
 
 
-    <!-- === SEÇÃO DO CARD DE RESULTADO === -->
+    <!-- === SEÇÃO DO RESULTADO (ESTILO AZUL - ORIGINAL) === -->
     <div id="result-container" class="card-style" style="display: none;">
         
-        <div class="card-header">
-            <!-- LOGO AQUI -->
+        <!-- Cabeçalho com borda AZUL -->
+        <div class="card-header result-header-border">
             <img src="UFPELOGO.png" alt="Logo UFPE" class="card-logo">
 
             <div class="header-text">
                 <h1>UFPE</h1>
-                <h2>PROGEPE</h2>
+                <!-- Texto PROGEPE Azul -->
+                <h2 class="text-blue">PROGEPE</h2>
             </div>
         </div>
 
-        <div class="sector-banner">
+        <!-- Faixa de Título AZUL -->
+        <div class="result-banner">
             <div id="res-sector-name" class="sector-title">NOME DO SETOR</div>
             <div id="res-sector-desc" class="sector-subtitle">Descrição curta do setor</div>
         </div>
 
-        <div class="sector-red-strip">
+        <!-- Rodapé VERMELHO -->
+        <div class="result-footer-strip">
             Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
         </div>
 
         <div class="card-body-grid">
-            
+            <!-- Colunas de Conteúdo -->
             <div class="col-box">
                 <div class="col-header">Quando procurar este setor?</div>
                 <div class="col-content">
@@ -661,7 +704,7 @@
                 { text: "Assuntos de Ponto, Faltas, Férias ou Licença Prêmio", result: "CASF" },
                 { text: "Licença Gestante, Paternidade, Casamento ou Óbito", result: "CASF" },
                 { text: "Declarações Funcionais (Vínculo) e Averbação de Tempo", result: "SIF" }
-                // Opção Carteira Funcional removida
+                // Opção Carteira removida
             ]
         }
     ];
@@ -682,7 +725,7 @@
 
         q.options.forEach(opt => {
             const btn = document.createElement('button');
-            btn.className = 'btn-option';
+            btn.className = 'btn-quiz'; // Classe alterada para o estilo vermelho
             btn.innerText = opt.text;
             btn.onclick = () => {
                 if (opt.result) {
