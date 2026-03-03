@@ -3,797 +3,719 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Orientação - PROGEPE UFPE</title>
+    <title>Guia de Orientação PROGEPE - UFPE v3</title>
     <style>
         :root {
             --ufpe-blue: #003b71;
             --ufpe-red: #780C18;
-            /* --ufpe-red: #b30000; */
-            --ufpe-light-blue: #f0f4f8;
-            --text-dark: #333;
+            --ufpe-bordo: #990000;
             --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-border: #e0e0e0;
+            --text-dark: #333333;
+            --text-medium: #555555;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #eef2f5;
-            margin: 0;
-            padding: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-dark);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
-        /* --- ESTILOS GERAIS DOS CARDS --- */
-        .card-style {
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            overflow: hidden;
+        /* --- Quiz Screen Styles --- */
+        .quiz-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 40px;
             text-align: center;
-            margin-bottom: 20px;
+            border-top: 8px solid var(--ufpe-blue);
         }
 
-        .card-header {
-            background: white;
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            text-align: left;
+        .quiz-logo {
+            width: 150px;
+            margin-bottom: 25px;
         }
 
-        .card-logo {
-            width: 60px;
-            height: auto;
-            margin-right: 15px;
-            object-fit: contain;
-        }
-
-        .header-text h1 {
-            color: #555;
-            font-size: 1.5rem;
-            margin: 0;
+        .quiz-title {
+            font-size: 1.8rem;
+            color: var(--ufpe-blue);
+            margin-bottom: 30px;
             font-weight: 800;
-            line-height: 1.1;
         }
 
-        .header-text h2 {
-            font-size: 1.2rem;
-            margin: 0;
-            font-weight: 600;
-            line-height: 1.1;
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
         }
 
-        /* --- ESTILOS ESPECÍFICOS DO QUIZ (VERMELHO) --- */
-        
-        /* Borda do cabeçalho vermelha */
-        .quiz-header-border {
-            border-bottom: 4px solid var(--ufpe-red);
-        }
-
-        /* Texto PROGEPE vermelho no cabeçalho */
-        .text-red {
-            color: var(--ufpe-red);
-        }
-
-        /* Banner de Título Vermelho */
-        .quiz-banner {
-            background-color: var(--ufpe-red);
-            color: white;
-            text-align: center;
+        .btn-option {
+            background-color: var(--white);
+            border: 2px solid var(--gray-border);
             padding: 20px;
-        }
-
-        /* Rodapé Azul (para contrastar com o vermelho do corpo) */
-        .quiz-footer-strip {
-            background-color: var(--ufpe-blue);
-            color: white;
-            text-align: center;
-            font-size: 0.85rem;
-            padding: 8px;
-            font-weight: 500;
-        }
-
-        /* Botões Vermelhos */
-        .btn-quiz {
-            padding: 15px 20px;
-            background-color: var(--ufpe-red);
-            color: white;
-            border: 2px solid transparent;
-            border-radius: 6px;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            color: var(--text-dark);
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             text-align: left;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            font-weight: 600;
         }
 
-        .btn-quiz:hover {
-            background-color: white;
-            color: var(--ufpe-red);
-            border-color: var(--ufpe-red);
-            box-shadow: 0 2px 8px rgba(179, 0, 0, 0.2);
+        .btn-option:hover {
+            border-color: var(--ufpe-blue);
+            background-color: #f0f7ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 59, 113, 0.1);
         }
-        
-        .btn-quiz::after {
-            content: '➔';
+
+        /* --- Result Screen Styles (Matching Reference) --- */
+        .result-card {
+            display: none;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Top Header */
+        .card-header-top {
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+        }
+
+        .top-logo {
+            height: 60px;
+        }
+
+        .top-titles {
+            line-height: 1.2;
+        }
+
+        .top-titles div:first-child {
+            font-weight: 800;
             font-size: 1.2rem;
-            opacity: 0.5;
-            margin-left: 10px;
-        }
-        .btn-quiz:hover::after {
-            opacity: 1;
+            color: #333;
         }
 
-        /* --- ESTILOS ESPECÍFICOS DO RESULTADO (AZUL - Mantido Original) --- */
-
-        /* Borda do cabeçalho azul */
-        .result-header-border {
-            border-bottom: 4px solid var(--ufpe-blue);
-        }
-
-        /* Texto PROGEPE azul no cabeçalho */
-        .text-blue {
+        .top-titles div:last-child {
+            font-weight: 700;
+            font-size: 1.1rem;
             color: var(--ufpe-blue);
         }
 
-        /* Banner de Título Azul */
-        .result-banner {
+        /* Sector Color Bar (Blue) */
+        .sector-title-bar {
             background-color: var(--ufpe-blue);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 25px 20px;
         }
 
-        /* Rodapé Vermelho */
-        .result-footer-strip {
-            background-color: var(--ufpe-red);
-            color: white;
-            text-align: center;
-            font-size: 0.85rem;
-            padding: 8px;
-            font-weight: 500;
-        }
-
-        /* --- LAYOUTS INTERNOS --- */
-
-        .sector-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin: 0;
+        .sector-title-bar h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
             text-transform: uppercase;
+            margin-bottom: 5px;
         }
 
-        .sector-subtitle {
-            font-size: 0.95rem;
-            margin-top: 5px;
-            font-weight: normal;
+        .sector-title-bar p {
+            font-size: 1.1rem;
+            font-weight: 400;
             opacity: 0.9;
         }
 
-        .quiz-content-area {
-            padding: 30px;
-            background-color: #fff;
-        }
-
-        .question-text {
-            font-size: 1.3rem;
-            color: var(--text-dark);
-            margin-bottom: 0;
+        /* Institutional Ribbon (Bordô) */
+        .inst-ribbon {
+            background-color: var(--ufpe-bordo);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
             font-weight: 600;
         }
 
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .card-body-grid {
+        /* Content Columns Area */
+        .card-content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
-            padding: 20px;
-            background-color: #f4f6f9;
+            gap: 20px;
+            padding: 30px;
+            background-color: #fdfdfd;
         }
 
-        @media (max-width: 768px) {
-            .card-body-grid {
+        @media (max-width: 850px) {
+            .card-content-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        .col-box {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        /* Column Styles */
+        .content-col {
+            background-color: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .col-header {
             background-color: var(--ufpe-blue);
             color: white;
-            padding: 12px;
+            padding: 15px;
             text-align: center;
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 800;
+            font-size: 1.05rem;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
         }
 
-        .col-content {
-            padding: 20px;
-            font-size: 0.95rem;
-            color: #444;
+        .col-body {
+            padding: 25px 20px;
             flex-grow: 1;
-            text-align: left;
         }
 
-        .check-list {
+        /* Specific Icons/Lists */
+        .when-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--ufpe-bordo);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px auto;
+            color: white;
+        }
+
+        .when-text {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .task-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
 
-        .check-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
+        .task-list li {
             position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-medium);
             line-height: 1.4;
         }
 
-        .check-list li::before {
+        .task-list li::before {
             content: '✔';
             position: absolute;
             left: 0;
             color: var(--ufpe-blue);
-            font-weight: bold;
-        }
-
-        .icon-center {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        .icon-center svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--ufpe-red);
+            font-weight: 800;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        .contact-item:last-child {
-            border-bottom: none;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .contact-icon {
-            margin-right: 12px;
-            min-width: 24px;
+            width: 32px;
+            height: 32px;
+            color: var(--ufpe-red);
+            flex-shrink: 0;
         }
 
-        /* Botão de Reinício */
-        .restart-container {
+        .contact-data {
+            line-height: 1.4;
+        }
+
+        .contact-data div:first-child {
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .contact-data div:last-child {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            word-break: break-all;
+        }
+
+        .col-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 0.8rem;
+            font-style: italic;
             text-align: center;
-            margin-top: 20px;
-        }
-        
-        .btn-restart {
-            background: transparent;
-            border: 2px solid var(--ufpe-blue);
-            color: var(--ufpe-blue);
-            padding: 10px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .btn-restart:hover {
-            background: var(--ufpe-blue);
-            color: white;
         }
 
+        /* Buttons */
+        .restart-area {
+            padding: 0 30px 30px 30px;
+            text-align: right;
+        }
+
+        .btn-restart {
+            background-color: var(--ufpe-blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-restart:hover {
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <!-- === SEÇÃO DO QUIZ (ESTILO VERMELHO) === -->
-    <div id="quiz-container" class="card-style">
+    <div class="container">
         
-        <!-- Cabeçalho com borda VERMELHA -->
-        <div class="card-header quiz-header-border">
-            <img src="UFPELOGO.png" alt="Logo UFPE" class="card-logo">
+        <!-- Quiz Main Screen -->
+        <div class="quiz-card" id="quiz-view">
+            <img src="UFPELOGO.png" alt="Logo UFPE" class="quiz-logo">
+            <h1 class="quiz-title" id="question-text">Para onde devemos encaminhar sua dúvida?</h1>
+            <div class="options-grid" id="options-container">
+                <!-- JS Inject -->
+            </div>
+        </div>
+
+        <!-- Result View (v3 Design) -->
+        <div class="result-card fade-in" id="result-view">
             
-            <div class="header-text">
-                <h1>UFPE</h1>
-                <!-- Texto PROGEPE Vermelho -->
-                <h2 class="text-red">PROGEPE</h2>
-            </div>
-        </div>
-
-        <!-- Faixa de Título VERMELHA -->
-        <div class="quiz-banner">
-            <div class="sector-title">Orientação ao Servidor</div>
-            <div id="question-text" class="sector-subtitle question-text" style="color: white; margin-top: 10px; font-size: 1.2rem;">Carregando pergunta...</div>
-        </div>
-
-        <!-- Área de Opções -->
-        <div class="quiz-content-area">
-            <div id="options-container" class="options">
-                <!-- Botões gerados via JS (Classe btn-quiz) -->
-            </div>
-        </div>
-
-        <!-- Rodapé AZUL (Contraste) -->
-        <div class="quiz-footer-strip">
-            Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
-        </div>
-    </div>
-
-
-    <!-- === SEÇÃO DO RESULTADO (ESTILO AZUL - ORIGINAL) === -->
-    <div id="result-container" class="card-style" style="display: none;">
-        
-        <!-- Cabeçalho com borda AZUL -->
-        <div class="card-header result-header-border">
-            <img src="UFPELOGO.png" alt="Logo UFPE" class="card-logo">
-
-            <div class="header-text">
-                <h1>UFPE</h1>
-                <!-- Texto PROGEPE Azul -->
-                <h2 class="text-blue">PROGEPE</h2>
-            </div>
-        </div>
-
-        <!-- Faixa de Título AZUL -->
-        <div class="result-banner">
-            <div id="res-sector-name" class="sector-title">NOME DO SETOR</div>
-            <div id="res-sector-desc" class="sector-subtitle">Descrição curta do setor</div>
-        </div>
-
-        <!-- Rodapé VERMELHO -->
-        <div class="result-footer-strip">
-            Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
-        </div>
-
-        <div class="card-body-grid">
-            <!-- Colunas de Conteúdo -->
-            <div class="col-box">
-                <div class="col-header">Quando procurar este setor?</div>
-                <div class="col-content">
-                    <div class="icon-center">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 9.99 9.99 6.5 17.5zm5.5-6.6c.61 0 1.1.49 1.1 1.1s-.49 1.1-1.1 1.1-1.1-.49-1.1-1.1.49-1.1 1.1-1.1z"/></svg>
-                    </div>
-                    <p id="res-when" style="line-height: 1.5;">Procure este setor quando...</p>
+            <!-- Header matching image -->
+            <div class="card-header-top">
+                <img src="UFPELOGO.png" alt="UFPE" class="top-logo">
+                <div class="top-titles">
+                    <div>UFPE</div>
+                    <div>PROGEPE</div>
                 </div>
             </div>
 
-            <div class="col-box">
-                <div class="col-header">O que este setor faz?</div>
-                <div class="col-content">
-                    <ul id="res-what" class="check-list">
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                    </ul>
-                </div>
+            <div class="sector-title-bar">
+                <h2 id="res-name">NOME DO SETOR</h2>
+                <p id="res-hierarchy">Diretoria de Administração de Pessoal</p>
             </div>
 
-            <div class="col-box">
-                <div class="col-header">Como falar com o setor</div>
-                <div class="col-content">
-                    <div id="res-contacts">
-                        <!-- Inserido via JS -->
-                    </div>
-                    <div style="margin-top: 20px; font-size: 0.8rem; color: #888; text-align: center;">
-                        <i>Atendimento: Consulte o horário específico da unidade.</i>
-                    </div>
-                </div>
+            <div class="inst-ribbon">
+                Pró-Reitoria de Gestão de Pessoas e Qualidade de Vida
             </div>
 
+            <div class="card-content-grid">
+                
+                <!-- Col 1: When -->
+                <div class="content-col">
+                    <div class="col-header">Quando procurar este setor?</div>
+                    <div class="col-body">
+                        <div class="when-icon">
+                            <svg style="width:24px;height:24px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z"/></svg>
+                        </div>
+                        <div class="when-text" id="res-when">
+                            Procure este setor para assuntos de...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 2: What -->
+                <div class="content-col">
+                    <div class="col-header">O que este setor faz?</div>
+                    <div class="col-body">
+                        <ul class="task-list" id="res-tasks">
+                            <!-- JS Inject -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 3: How -->
+                <div class="content-col">
+                    <div class="col-header">Como falar com o setor</div>
+                    <div class="col-body" id="res-contacts">
+                        <!-- JS Inject -->
+                    </div>
+                    <div class="col-footer">
+                        Atendimento: Consulte o horário específico da unidade.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="restart-area">
+                <button class="btn-restart" onclick="restartQuiz()">Nova Consulta</button>
+            </div>
         </div>
+
     </div>
 
-    <div id="restart-box" class="restart-container" style="display: none;">
-        <button class="btn-restart" onclick="restartQuiz()">Nova Consulta</button>
-    </div>
-
-</div>
-
-<script>
-    // --- BASE DE DADOS DOS SETORES ---
-    const sectorsData = {
-        "CAPE": {
-            name: "CAPE - Coordenação de Aposentadoria e Pensão",
-            subtitle: "Diretoria de Administração de Pessoal",
-            when: "Procure a CAPE quando precisar solicitar aposentadoria, pensão, abono de permanência ou auxílio funeral.",
-            what: [
-                "Análise e concessão de Aposentadoria",
-                "Concessão de Abono Permanência",
-                "Concessão de Pensão por morte",
-                "Pagamento de Auxílio Funeral",
-                "Revisão de proventos"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8675" },
-                { type: "Email", val: "cape.progepe@ufpe.br" },
-                { type: "Aposentadoria", val: "(81) 2126-8175" },
-                { type: "Pensão", val: "(81) 2126-8674" }
-            ]
-        },
-        "CACE": {
-            name: "CACE - Coordenação de Acumulação de Cargos",
-            subtitle: "Gabinete da Pró-Reitoria",
-            when: "Procure a CACE se você possui mais de um vínculo público e precisa verificar a legalidade da acumulação.",
-            what: [
-                "Análise de processos de acumulação de cargos",
-                "Verificação de compatibilidade de horários",
-                "Orientação sobre impedimentos legais"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8172 / 8003" },
-                { type: "Email", val: "cace.progepe@ufpe.br" }
-            ]
-        },
-        "COSAIP_CORAX": {
-            name: "COSAIP / CORAX",
-            subtitle: "Saúde e Segurança do Trabalho",
-            when: "Procure estas comissões para solicitar adicionais relacionados a riscos no ambiente de trabalho (Insalubridade, Periculosidade, Raio-X).",
-            what: [
-                "Laudos de Insalubridade e Periculosidade (COSAIP)",
-                "Adicional de Irradiação Ionizante (CORAX)",
-                "Gratificação de Raio-X (CORAX)",
-                "Avaliação de locais de trabalho"
-            ],
-            contacts: [
-                { type: "COSAIP (Email)", val: "secretaria.cosaip@ufpe.br" },
-                { type: "CORAX (Email)", val: "corax.ufpe@gmail.br" },
-                { type: "Telefone", val: "(81) 2126-8003" }
-            ]
-        },
-        "CPC": {
-            name: "CPC - Coordenação de Provimentos e Concursos",
-            subtitle: "Diretoria de Desenvolvimento de Pessoas",
-            when: "Procure a CPC para assuntos relacionados a concursos, admissão, bolsas e estágios.",
-            what: [
-                "Gestão de Concursos (Docentes e Técnicos)",
-                "Nomeação e Posse de novos servidores",
-                "Gestão de Bolsas (ProMulti) e Estágios",
-                "Vacância e Exoneração"
-            ],
-            contacts: [
-                { type: "Geral", val: "(81) 2126-8672" },
-                { type: "Admissão/Concursos", val: "(81) 2126-7095" },
-                { type: "Bolsas", val: "(81) 2126-8676" },
-                { type: "Email", val: "cpc.progepe@ufpe.br" }
-            ]
-        },
-        "SMP": {
-            name: "SMP - Seção de Movimentação de Pessoal",
-            subtitle: "Coordenação de Avaliação e Movimentação (CADMP)",
-            when: "Procure a SMP quando desejar mudar de setor, órgão ou solicitar licenças específicas de afastamento.",
-            what: [
-                "Remoção e Redistribuição",
-                "Cessão e Requisição de servidores",
-                "Licença para Tratar de Interesse Particular",
-                "Licença para Acompanhar Cônjuge",
-                "Colaboração Técnica"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8165" },
-                { type: "Email", val: "smp.progepe@ufpe.br" }
-            ]
-        },
-        "SAAPQ": {
-            name: "SAAPQ - Acompanhamento das Progressões",
-            subtitle: "Núcleo ligado à FORMARE/DDP",
-            when: "Procure a SAAPQ para assuntos sobre sua qualificação, cursos e incentivos na carreira.",
-            what: [
-                "Incentivo à Qualificação (Diplomas)",
-                "Progressão por Capacitação (Cursos)",
-                "Licença Capacitação (Afastamento)",
-                "Jornada Especial para Estudos",
-                "Horário Especial para Servidor Estudante"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8671 / 8669" },
-                { type: "Email", val: "saapq.cfc@ufpe.br" }
-            ]
-        },
-        "CADMP": {
-            name: "CADMP - Avaliação e Dimensionamento",
-            subtitle: "Diretoria de Desenvolvimento de Pessoas",
-            when: "Procure a CADMP para assuntos sobre sua avaliação de desempenho funcional e estágio probatório.",
-            what: [
-                "Avaliação de Estágio Probatório",
-                "Progressão por Mérito Profissional",
-                "Gestão do Dimensionamento da Força de Trabalho"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8173 / 8174" },
-                { type: "Email", val: "cadmp.progepe@ufpe.br" },
-                { type: "Avaliação", val: "desempenho.progepe@ufpe.br" }
-            ]
-        },
-        "CPP": {
-            name: "CPP - Coordenação de Pagamento de Pessoal",
-            subtitle: "Diretoria de Administração de Pessoal",
-            when: "Procure a CPP para questões financeiras, contracheque e auxílios financeiros.",
-            what: [
-                "Folha de Pagamento",
-                "Auxílio Transporte e Alimentação",
-                "Auxílio Natalidade e Pré-Escolar",
-                "Alteração de dados bancários",
-                "Exercícios Anteriores"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8177" },
-                { type: "Email", val: "pagamento.progepe@ufpe.br" },
-                { type: "CASF (Auxílios)", val: "(81) 2126-8673" }
-            ]
-        },
-        "CASF": {
-            name: "CASF / Seção de Frequência",
-            subtitle: "Coordenação de Assentamento Funcional",
-            when: "Procure este setor para questões de ponto eletrônico, férias, licença prêmio e licenças iniciais.",
-            what: [
-                "Controle de Frequência e Ponto",
-                "Registro de Férias e Licença Prêmio",
-                "Licença Gestante e Paternidade",
-                "Licença Gala e Nojo"
-            ],
-            contacts: [
-                { type: "Secretaria CASF", val: "(81) 2126-8673" },
-                { type: "Frequência", val: "(81) 2126-8039" },
-                { type: "Email Frequência", val: "frequencia.progepe@ufpe.br" },
-                { type: "Email CASF", val: "casf.progepe@ufpe.br" }
-            ]
-        },
-        "SIF": {
-            name: "CASF / Seção de Informações Funcionais",
-            subtitle: "Coordenação de Assentamento Funcional (CASF)",
-            when: "Procure a SIF para solicitar declarações funcionais, averbação de tempo de serviço e informações da pasta.",
-            what: [
-                "Declarações de Vínculo",
-                "Averbação de Tempo de Serviço",
-                "Informações da Pasta Funcional",
-                "Histórico de Licenças e Afastamentos"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-7084" },
-                { type: "Email", val: "sif.progepe@ufpe.br" }
-            ]
-        },
-        "NASS": {
-            name: "NASS - Núcleo de Atenção à Saúde",
-            subtitle: "Diretoria de Qualidade de Vida",
-            when: "Procure o NASS para perícias médicas, licenças de saúde e atendimento assistencial.",
-            what: [
-                "Licença para Tratamento de Saúde",
-                "Licença por doença em pessoa da família",
-                "Perícia Oficial em Saúde",
-                "Assistência Médica e Odontológica"
-            ],
-            contacts: [
-                { type: "Recepção", val: "(81) 2126-3944 / 7578" },
-                { type: "Coordenação", val: "(81) 2126-8582" },
-                { type: "Email", val: "nass.unidadesiass@ufpe.br" }
-            ]
-        },
-        "DQV": {
-            name: "DQV - Diretoria de Qualidade de Vida",
-            subtitle: "Pró-Reitoria de Gestão de Pessoas",
-            when: "Procure a DQV para benefícios de saúde suplementar e programas de bem-estar.",
-            what: [
-                "Auxílio Saúde (Ressarcimento)",
-                "Planos de Saúde (GEAP/CAPESAÚDE)",
-                "Serviço Voluntário",
-                "Clube de Descontos"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8190" },
-                { type: "WhatsApp", val: "(81) 2126-8189" },
-                { type: "Email", val: "apoiodqv.progepe@ufpe.br" }
-            ]
-        },
-        "SOPAD": {
-            name: "SOPAD - Serviço de Corregedoria",
-            subtitle: "Gabinete da Pró-Reitoria",
-            when: "Procure a SOPAD para tratar de Processos Administrativos Disciplinares.",
-            what: [
-                "Condução de Processos Disciplinares (PAD)",
-                "Sindicâncias",
-                "Orientações correicionais"
-            ],
-            contacts: [
-                { type: "Telefone", val: "(81) 2126-8167" },
-                { type: "Email", val: "servicocorregedoria@ufpe.br" }
-            ]
-        }
-    };
-
-    // --- LÓGICA DO QUIZ (Árvore de Decisão) ---
-    const questions = [
-        {
-            id: 0,
-            text: "Qual é o tema principal da sua solicitação?",
-            options: [
-                { text: "Financeiro / Pagamentos / Auxílios", next: 1 },
-                { text: "Saúde / Licença Médica / Perícia", next: 2 },
-                { text: "Carreira / Formação / Avaliação", next: 3 },
-                { text: "Aposentadoria / Pensão / Tempo de Serviço", next: 4 },
-                { text: "Movimentação / Entrada ou Saída da UFPE", next: 5 },
-                { text: "Frequência / Férias / Dados Funcionais", next: 6 },
-                { text: "Questões Disciplinares / Processos", result: "SOPAD" }
-            ]
-        },
-        // Ramo Financeiro (1)
-        {
-            id: 1,
-            text: "O que você precisa resolver especificamente?",
-            options: [
-                { text: "Dúvidas no contracheque, conta bancária ou auxílio transporte/alimentação", result: "CPP" },
-                { text: "Auxílio Saúde (Ressarcimento) ou Plano de Saúde", result: "DQV" },
-                { text: "Adicional de Insalubridade, Periculosidade ou Raio-X", result: "COSAIP_CORAX" },
-                { text: "Tenho dois empregos públicos e preciso verificar a acumulação", result: "CACE" },
-                { text: "Auxílio Natalidade ou Pré-Escolar", result: "CPP" }
-            ]
-        },
-        // Ramo Saúde (2)
-        {
-            id: 2,
-            text: "Qual tipo de atendimento de saúde?",
-            options: [
-                { text: "Atestado médico, perícia ou licença saúde/familiar", result: "NASS" },
-                { text: "Segurança do trabalho (EPI, Riscos Ambientais)", result: "COSAIP_CORAX" },
-                { text: "Ressarcimento de Plano de Saúde", result: "DQV" }
-            ]
-        },
-        // Ramo Carreira (3)
-        {
-            id: 3,
-            text: "O assunto é sobre avaliação ou cursos?",
-            options: [
-                { text: "Avaliação de Desempenho ou Estágio Probatório", result: "CADMP" },
-                { text: "Incentivo à Qualificação (Diploma), Cursos ou Licença Capacitação", result: "SAAPQ" }
-            ]
-        },
-        // Ramo Aposentadoria/Tempo (4)
-        {
-            id: 4,
-            text: "Especifique o serviço desejado:",
-            options: [
-                { text: "Solicitar Aposentadoria, Abono Permanência ou Pensão", result: "CAPE" },
-                { text: "Averbação de Tempo de Serviço (Trazer tempo de fora)", result: "SIF" },
-                { text: "Auxílio Funeral", result: "CAPE" }
-            ]
-        },
-        // Ramo Movimentação (5)
-        {
-            id: 5,
-            text: "Qual tipo de movimentação?",
-            options: [
-                { text: "Entrar na UFPE (Concurso, Posse) ou Bolsas/Estágio", result: "CPC" },
-                { text: "Mudar de setor (Remoção), Redistribuição ou Cessão", result: "SMP" },
-                { text: "Licença para Tratar de Interesse Particular", result: "SMP" },
-                { text: "Sair da UFPE (Exoneração/Vacância)", result: "CPC" }
-            ]
-        },
-        // Ramo Frequência/Registro (6)
-        {
-            id: 6,
-            text: "O que você precisa registrar ou solicitar?",
-            options: [
-                { text: "Assuntos de Ponto, Faltas, Férias ou Licença Prêmio", result: "CASF" },
-                { text: "Licença Gestante, Paternidade, Casamento ou Óbito", result: "CASF" },
-                { text: "Declarações Funcionais (Vínculo) e Averbação de Tempo", result: "SIF" }
-                // Opção Carteira removida
-            ]
-        }
-    ];
-
-    // --- FUNÇÕES DE CONTROLE ---
-
-    function startQuiz() {
-        showQuestion(0);
-    }
-
-    function showQuestion(id) {
-        const q = questions.find(q => q.id === id);
-        if (!q) return;
-
-        document.getElementById('question-text').innerText = q.text;
-        const optsContainer = document.getElementById('options-container');
-        optsContainer.innerHTML = '';
-
-        q.options.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'btn-quiz'; // Classe alterada para o estilo vermelho
-            btn.innerText = opt.text;
-            btn.onclick = () => {
-                if (opt.result) {
-                    showResult(opt.result);
-                } else if (opt.next) {
-                    showQuestion(opt.next);
-                }
-            };
-            optsContainer.appendChild(btn);
-        });
-    }
-
-    function showResult(sectorKey) {
-        document.getElementById('quiz-container').style.display = 'none';
-        document.getElementById('result-container').style.display = 'block';
-        document.getElementById('restart-box').style.display = 'block';
-
-        const data = sectorsData[sectorKey];
-
-        document.getElementById('res-sector-name').innerText = data.name;
-        document.getElementById('res-sector-desc').innerText = data.subtitle;
-        document.getElementById('res-when').innerText = data.when;
-
-        const whatList = document.getElementById('res-what');
-        whatList.innerHTML = '';
-        data.what.forEach(item => {
-            const li = document.createElement('li');
-            li.innerText = item;
-            whatList.appendChild(li);
-        });
-
-        const contactsDiv = document.getElementById('res-contacts');
-        contactsDiv.innerHTML = '';
-        data.contacts.forEach(c => {
-            const div = document.createElement('div');
-            div.className = 'contact-item';
-            
-            let iconSvg = '';
-            if(c.type.includes("Telefone") || c.type.includes("WhatsApp")) {
-                iconSvg = '<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>';
-            } else if(c.type.includes("Email")) {
-                iconSvg = '<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>';
-            } else {
-                iconSvg = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>';
+    <script>
+        const sectorsData = {
+            "CPP": {
+                name: "CPP - Coordenação de Pagamento de Pessoal",
+                hierarchy: "Diretoria de Administração de Pessoal",
+                when: "Procure a CPP para questões financeiras, contracheque e auxílios financeiros.",
+                tasks: ["Folha de Pagamento", "Auxílio Transporte e Alimentação", "Auxílio Natalidade e Pré-Escolar", "Alteração de dados bancários", "Exercícios Anteriores"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8177", icon: "phone" },
+                    { label: "Email", val: "pagamento.progepe@ufpe.br", icon: "email" },
+                    { label: "Reposição Erário", val: "2126-8678", icon: "info" }
+                ]
+            },
+            "CASF_FREQ": {
+                name: "CASF - Controle de Frequência e Relotação",
+                hierarchy: "Diretoria de Administração de Pessoal",
+                when: "Procure para dúvidas de assiduidade, férias e afastamentos legais temporários.",
+                tasks: ["Gestão do ponto eletrônico", "Registro de Férias e PGD", "Licença Maternidade e Adotante", "Licença Paternidade, Nojo e Gala", "Licença Prêmio e Afastamentos"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8039", icon: "phone" },
+                    { label: "Email", val: "frequencia.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CASF_INFO": {
+                name: "CASF - Tempo de Serviço",
+                hierarchy: "Diretoria de Administração de Pessoal",
+                when: "Procure para tratar do seu histórico funcional e contagem de tempo para direitos.",
+                tasks: ["Averbação de tempo externo", "Desaverbação de tempo", "Emissão de Certidões de Tempo", "Informações Funcionais Históricas"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-7084", icon: "phone" },
+                    { label: "Email", val: "tempodeservico.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CASF_ARQ": {
+                name: "CASF - Arquivo de Pessoal",
+                hierarchy: "Diretoria de Administração de Pessoal",
+                when: "Procure para acessar documentos físicos ou digitais da sua pasta funcional.",
+                tasks: ["Consulta à Pasta Funcional", "Digitalização de Documentos", "Entrega de documentos para arquivo"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8147", icon: "phone" },
+                    { label: "Email", val: "arquivodepessoal.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CADMP_AVAL": {
+                name: "CADMP - Avaliação de Desempenho",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                when: "Procure para tratar do seu crescimento funcional por mérito ou estágio.",
+                tasks: ["Progressão por Mérito (TAE)", "Estágio Probatório", "Dimensionamento de Pessoal (DFT)"],
+                contacts: [
+                    { label: "Mérito/TAE", val: "(81) 2126-8174", icon: "phone" },
+                    { label: "Estágio Probatório", val: "(81) 2126-7148", icon: "phone" },
+                    { label: "Email", val: "desempenho.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CADMP_MOV": {
+                name: "CADMP - Movimentação de Pessoal",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                when: "Procure quando desejar mudar de unidade ou solicitar licenças de interesse.",
+                tasks: ["Remoção e Redistribuição", "Cessão e Exercício Provisório", "Licença Interesse Particular", "Licença p/ Acompanhar Cônjuge"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8165", icon: "phone" },
+                    { label: "Email", val: "movimentacao.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CAPE": {
+                name: "CAPE - Aposentadoria e Pensão",
+                hierarchy: "Diretoria de Administração de Pessoal",
+                when: "Procure ao final da carreira ou para dependentes de servidores falecidos.",
+                tasks: ["Aposentadoria", "Abono de Permanência", "Pensão Civil e Auxílio Funeral", "Análise Funcional (NAF)"],
+                contacts: [
+                    { label: "Geral", val: "(81) 2126-8675", icon: "phone" },
+                    { label: "Email", val: "cape.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CPC": {
+                name: "CPC - Provimentos e Concursos",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                when: "Procure para admissão, editais de concursos e saída definitiva do órgão.",
+                tasks: ["Concursos TAE e Docentes", "Posse e Nomeação", "Bolsas de Desenvolvimento", "Exoneração e Vacância"],
+                contacts: [
+                    { label: "Geral", val: "(81) 2126-8672", icon: "phone" },
+                    { label: "Admissão", val: "(81) 2126-7095", icon: "phone" },
+                    { label: "Email", val: "cpc.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "FORMARE": {
+                name: "FORMARE - Escola de Formação",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                when: "Procure para capacitação, cursos e progressão por escolaridade.",
+                tasks: ["Cursos de Capacitação", "Incentivo à Qualificação", "Afastamento p/ Estudo", "Licença Capacitação"],
+                contacts: [
+                    { label: "Geral", val: "(81) 2126-8669", icon: "phone" },
+                    { label: "Qualificação", val: "(81) 2126-8671", icon: "phone" },
+                    { label: "Email", val: "formare.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "NASS": {
+                name: "NASS - Atenção à Saúde do Servidor",
+                hierarchy: "Diretoria de Qualidade de Vida",
+                when: "Procure para perícias médicas e suporte à saúde física e mental.",
+                tasks: ["Perícia Médica Oficial", "Licença Saúde e Familiar", "Saúde Mental e Acolhimento", "Assistência Psicossocial"],
+                contacts: [
+                    { label: "Médico/Nutri", val: "(81) 2126-3944", icon: "phone" },
+                    { label: "Saúde Mental", val: "(81) 2126-7577", icon: "phone" },
+                    { label: "Email", val: "nass.siass.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "DQV_APOIO": {
+                name: "DQV - Apoio em Qualidade de Vida",
+                hierarchy: "Diretoria de Qualidade de Vida",
+                when: "Procure para benefícios indiretos, como planos de saúde e convênios.",
+                tasks: ["Planos de Saúde e Odonto", "Ressarcimento Per Capita", "Clube do Desconto", "Serviço Voluntário"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8190", icon: "phone" },
+                    { label: "WhatsApp", val: "2126-8189", icon: "phone" },
+                    { label: "Email", val: "apoiodqv.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "SESST": {
+                name: "SESST - Segurança do Trabalho",
+                hierarchy: "Diretoria de Qualidade de Vida",
+                when: "Procure para avaliação de riscos ambientais e equipamentos de proteção.",
+                tasks: ["Laudos Ambientais (LTCAT)", "Segurança do Trabalho", "Ergonomia", "Avaliação de Insalubridade (Técnica)"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-3992", icon: "phone" },
+                    { label: "Email", val: "sesst.siass.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CACE": {
+                name: "CACE - Acumulação de Cargos",
+                hierarchy: "Gabinete da Pró-Reitoria",
+                when: "Procure se tiver outro vínculo público ou privado e desejar verificar legalidade.",
+                tasks: ["Análise de Acumulação", "Pareceres de Carga Horária", "Legalidade de Vínculos"],
+                contacts: [
+                    { label: "Geral", val: "(81) 2126-8172", icon: "phone" },
+                    { label: "Apoio", val: "(81) 2126-8003", icon: "phone" }
+                ]
+            },
+            "COMISSOES_OCUP": {
+                name: "Comissões Ocupacionais (COSAIP/CORAX)",
+                hierarchy: "Gabinete da Pró-Reitoria",
+                when: "Procure para adicional de insalubridade, periculosidade ou raio-X.",
+                tasks: ["Adicional Insalubridade", "Adicional Periculosidade", "Gratificação de Raio-X", "Riscos Radioativos"],
+                contacts: [
+                    { label: "Geral", val: "(81) 2126-8003", icon: "phone" },
+                    { label: "COSAIP", val: "seccosaip.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "GLCP": {
+                name: "GLCP - Legislação e Processos",
+                hierarchy: "Gabinete da Pró-Reitoria",
+                when: "Procure para orientações normativas, processos judiciais ou ouvidoria.",
+                tasks: ["Processos Judiciais", "Demandas de Ouvidoria", "Parecer de Legislação", "Órgãos de Controle"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8112", icon: "phone" },
+                    { label: "Email", val: "glcp.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CAS": {
+                name: "CAS - Central de Atendimento ao Servidor",
+                hierarchy: "Diretoria de Administração de Pessoal",
+                when: "Procure para dúvidas iniciais, acesso a sistemas (SouGov) ou prova de vida.",
+                tasks: ["Dúvidas SouGov / Sigepe", "Prova de Vida", "Informe de Rendimentos", "Identidade Funcional"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8166", icon: "phone" },
+                    { label: "WhatsApp", val: "(81) 2126-8176", icon: "phone" },
+                    { label: "Email", val: "centralservidor@ufpe.br", icon: "email" }
+                ]
+            },
+            "DTICOM": {
+                name: "DTICOM - Tecnologia da Informação",
+                hierarchy: "Gabinete da Pró-Reitoria",
+                when: "Setor técnico para gestores sobre unidades e permissões em sistemas RH.",
+                tasks: ["Gestão de Unidades (RH)", "Habilitação SIAPE / SIGRH", "Extração de Relatórios", "Configuração de Vínculos"],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8169", icon: "phone" },
+                    { label: "Email", val: "dticom.progepe@ufpe.br", icon: "email" }
+                ]
             }
+        };
 
-            div.innerHTML = `
-                <div class="contact-icon" style="width: 24px; height: 24px; fill: var(--ufpe-red);">${iconSvg}</div>
-                <div class="contact-info">
-                    <strong style="color: var(--ufpe-blue);">${c.type}:</strong> ${c.val}
-                </div>
-            `;
-            contactsDiv.appendChild(div);
-        });
-    }
+        const questions = [
+            {
+                id: 1,
+                text: "Para onde devemos encaminhar sua dúvida?",
+                options: [
+                    { text: "Financeiro (Salário, Auxílios, Tributos)", next: 2 },
+                    { text: "Carreira (Avaliação, Remoção, Qualificação)", next: 3 },
+                    { text: "Saúde e Qualidade de Vida", next: 4 },
+                    { text: "Aposentadoria e História Funcional", next: 5 },
+                    { text: "Concursos e Ingresso/Saída", next: 6 },
+                    { text: "Frequência, Ponto e Férias", result: "CASF_FREQ" },
+                    { text: "Dúvidas Legais ou Ouvidoria", next: 8 }
+                ]
+            },
+            {
+                id: 2, 
+                text: "Qual o assunto financeiro específico?",
+                options: [
+                    { text: "Pagamento, Banco ou Vale Transporte/Alimentação", result: "CPP" },
+                    { text: "Exercícios Anteriores ou Reposição Erário", result: "CPP" },
+                    { text: "Ressarcimento de Plano de Saúde (Per Capita)", result: "DQV_APOIO" },
+                    { text: "Insalubridade, Periculosidade ou Raio-X", result: "COMISSOES_OCUP" }
+                ]
+            },
+            {
+                id: 3, 
+                text: "Sobre sua carreira ou trajetória atual:",
+                options: [
+                    { text: "Mudar de Unidade ou Relotação", result: "CADMP_MOV" },
+                    { text: "Progressão por Mérito ou Estágio Probatório", result: "CADMP_AVAL" },
+                    { text: "Cursos de Capacitação ou Incentivo Qualificação", result: "FORMARE" },
+                    { text: "Afastamento para estudo (Pós/Mestrado)", result: "FORMARE" }
+                ]
+            },
+            {
+                id: 4, 
+                text: "Sobre Saúde e Bem-estar:",
+                options: [
+                    { text: "Licença Médica ou Perícia", result: "NASS" },
+                    { text: "Suporte Psicológico ou Saúde Mental", result: "NASS" },
+                    { text: "Segurança do Trabalho ou Ergonomia", result: "SESST" },
+                    { text: "Planos de Saúde ou Odonto", result: "DQV_APOIO" }
+                ]
+            },
+            {
+                id: 5, 
+                text: "Sobre sua história funcional ou previdência:",
+                options: [
+                    { text: "Aposentadoria ou Abono Permanência", result: "CAPE" },
+                    { text: "Pensão ou Auxílio Funeral", result: "CAPE" },
+                    { text: "Averbar Tempo Externo ou Certidão de Tempo", result: "CASF_INFO" },
+                    { text: "Consultar minha Pasta Funcional (Arquivo)", result: "CASF_ARQ" }
+                ]
+            },
+            {
+                id: 6, 
+                text: "Vínculos e Concursos:",
+                options: [
+                    { text: "Editais, Nomeação e Posse", result: "CPC" },
+                    { text: "Bolsas ou Estágios", result: "CPC" },
+                    { text: "Sair da UFPE (Exoneração/Vacância)", result: "CPC" },
+                    { text: "Mais de um Cargo (Acumulação)", result: "CACE" }
+                ]
+            },
+            {
+                id: 8, 
+                text: "Administrativo e Legal:",
+                options: [
+                    { text: "Processos Judiciais ou Questões Normativas", result: "GLCP" },
+                    { text: "Dúvidas sobre o SouGov ou Prova de Vida", result: "CAS" },
+                    { text: "Ouvidoria da PROGEPE", result: "GLCP" },
+                    { text: "Acesso a sistemas de RH (Para Gestores)", result: "DTICOM" }
+                ]
+            }
+        ];
 
-    function restartQuiz() {
-        document.getElementById('result-container').style.display = 'none';
-        document.getElementById('restart-box').style.display = 'none';
-        document.getElementById('quiz-container').style.display = 'block';
-        startQuiz();
-    }
+        function renderQuestion(id) {
+            const q = questions.find(q => q.id === id);
+            const container = document.getElementById('options-container');
+            const textEl = document.getElementById('question-text');
+            
+            container.innerHTML = '';
+            textEl.innerText = q.text;
 
-    // Inicia o quiz ao carregar
-    startQuiz();
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-option';
+                btn.innerText = opt.text;
+                btn.onclick = () => {
+                    if (opt.result) showResult(opt.result);
+                    else renderQuestion(opt.next);
+                };
+                container.appendChild(btn);
+            });
+        }
 
-</script>
+        function showResult(sectorKey) {
+            const quizView = document.getElementById('quiz-view');
+            const resultView = document.getElementById('result-view');
+            const data = sectorsData[sectorKey];
 
+            quizView.style.display = 'none';
+            resultView.style.display = 'block';
+
+            document.getElementById('res-name').innerText = data.name;
+            document.getElementById('res-hierarchy').innerText = data.hierarchy;
+            document.getElementById('res-when').innerText = data.when;
+
+            const tasksList = document.getElementById('res-tasks');
+            tasksList.innerHTML = '';
+            data.tasks.forEach(t => {
+                const li = document.createElement('li');
+                li.innerText = t;
+                tasksList.appendChild(li);
+            });
+
+            const contactsDiv = document.getElementById('res-contacts');
+            contactsDiv.innerHTML = '';
+            data.contacts.forEach(c => {
+                let iconSVG = '';
+                if(c.icon === 'phone') iconSVG = '<path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />';
+                else if(c.icon === 'email') iconSVG = '<path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />';
+                else iconSVG = '<path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />';
+
+                contactsDiv.innerHTML += `
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="${iconSVG}" fill="currentColor"/></svg>
+                        <div class="contact-data">
+                            <div>${c.label}:</div>
+                            <div>${c.val}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function restartQuiz() {
+            document.getElementById('result-view').style.display = 'none';
+            document.getElementById('quiz-view').style.display = 'block';
+            renderQuestion(1);
+        }
+
+        window.onload = () => renderQuestion(1);
+    </script>
 </body>
 </html>
