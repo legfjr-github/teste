@@ -396,155 +396,257 @@
         const sectorsData = {
             "CPP": {
                 name: "CPP - Coordenação de Pagamento de Pessoal",
-                hierarchy: "Diretoria de Administração de Pessoal",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
                 when: "Procure a CPP para questões financeiras, contracheque e auxílios financeiros.",
-                tasks: ["Folha de Pagamento", "Auxílio Transporte e Alimentação", "Auxílio Natalidade e Pré-Escolar", "Alteração de dados bancários", "Exercícios Anteriores"],
+                tasks: [
+                    "Gestão da folha de pagamento de ativos e inativos",
+                    "Alteração de conta bancária para recebimento",
+                    "Pagamento de exercícios anteriores",
+                    "Isenção de IRRF e Reposição ao Erário",
+                    "Inclusão de vale transporte e outros auxílios"
+                ],
                 contacts: [
-                    { label: "Telefone", val: "(81) 2126-8177", icon: "phone" },
-                    { label: "Email", val: "pagamento.progepe@ufpe.br", icon: "email" },
+                    { label: "Geral", val: "(81) 2126-8177", icon: "phone" },
+                    { label: "Pagamentos", val: "pagamento.progepe@ufpe.br", icon: "email" },
+                    { label: "Exerc. Anteriores", val: "exanterior.progepe@ufpe.br", icon: "email" },
                     { label: "Reposição Erário", val: "2126-8678", icon: "info" }
-                ]
-            },
-            "CASF_FREQ": {
-                name: "CASF - Controle de Frequência e Relotação",
-                hierarchy: "Diretoria de Administração de Pessoal",
-                when: "Procure para dúvidas de assiduidade, férias e afastamentos legais temporários.",
-                tasks: ["Gestão do ponto eletrônico", "Registro de Férias e PGD", "Licença Maternidade e Adotante", "Licença Paternidade, Nojo e Gala", "Licença Prêmio e Afastamentos"],
-                contacts: [
-                    { label: "Telefone", val: "(81) 2126-8039", icon: "phone" },
-                    { label: "Email", val: "frequencia.progepe@ufpe.br", icon: "email" }
-                ]
-            },
-            "CASF_INFO": {
-                name: "CASF - Tempo de Serviço",
-                hierarchy: "Diretoria de Administração de Pessoal",
-                when: "Procure para tratar do seu histórico funcional e contagem de tempo para direitos.",
-                tasks: ["Averbação de tempo externo", "Desaverbação de tempo", "Emissão de Certidões de Tempo", "Informações Funcionais Históricas"],
-                contacts: [
-                    { label: "Telefone", val: "(81) 2126-7084", icon: "phone" },
-                    { label: "Email", val: "tempodeservico.progepe@ufpe.br", icon: "email" }
-                ]
-            },
-            "CASF_ARQ": {
-                name: "CASF - Arquivo de Pessoal",
-                hierarchy: "Diretoria de Administração de Pessoal",
-                when: "Procure para acessar documentos físicos ou digitais da sua pasta funcional.",
-                tasks: ["Consulta à Pasta Funcional", "Digitalização de Documentos", "Entrega de documentos para arquivo"],
-                contacts: [
-                    { label: "Telefone", val: "(81) 2126-8147", icon: "phone" },
-                    { label: "Email", val: "arquivodepessoal.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "CADMP_AVAL": {
                 name: "CADMP - Avaliação de Desempenho",
-                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas (DDP)",
                 when: "Procure para tratar do seu crescimento funcional por mérito ou estágio.",
-                tasks: ["Progressão por Mérito (TAE)", "Estágio Probatório", "Dimensionamento de Pessoal (DFT)"],
+                tasks: [
+                    "Progressão por mérito funcional (TAE)",
+                    "Avaliação de Estágio Probatório (Docente e TAE)",
+                    "Acompanhamento do desempenho funcional",
+                    "Dimensionamento da força de trabalho (DFT)"
+                ],
                 contacts: [
                     { label: "Mérito/TAE", val: "(81) 2126-8174", icon: "phone" },
                     { label: "Estágio Probatório", val: "(81) 2126-7148", icon: "phone" },
-                    { label: "Email", val: "desempenho.progepe@ufpe.br", icon: "email" }
+                    { label: "E-mail", val: "desempenho.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "CADMP_MOV": {
                 name: "CADMP - Movimentação de Pessoal",
-                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas (DDP)",
                 when: "Procure quando desejar mudar de unidade ou solicitar licenças de interesse.",
-                tasks: ["Remoção e Redistribuição", "Cessão e Exercício Provisório", "Licença Interesse Particular", "Licença p/ Acompanhar Cônjuge"],
+                tasks: [
+                    "Remoção e Redistribuição de servidores",
+                    "Cessão, requisição e exercício provisório",
+                    "Licença para tratar de interesse particular",
+                    "Licença para acompanhar cônjuge",
+                    "Licença Prêmio"
+                ],
                 contacts: [
                     { label: "Telefone", val: "(81) 2126-8165", icon: "phone" },
-                    { label: "Email", val: "movimentacao.progepe@ufpe.br", icon: "email" }
+                    { label: "E-mail", val: "movimentacao.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CASF_FREQ": {
+                name: "CASF - Controle de Frequência e Relotação",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
+                when: "Procure para dúvidas de assiduidade, férias e afastamentos legais temporários.",
+                tasks: [
+                    "Gestão do ponto eletrônico e frequência",
+                    "Registro e acompanhamento de Férias",
+                    "PGD (Programa de Gestão e Desempenho)",
+                    "Licenças: Maternidade, Adotante, Paternidade, Nojo, Gala e Prêmio",
+                    "Afastamentos a serviço"
+                ],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8039", icon: "phone" },
+                    { label: "E-mail", val: "frequencia.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CASF_INFO": {
+                name: "CASF - Tempo de Serviço",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
+                when: "Procure para tratar do seu histórico funcional e contagem de tempo para direitos.",
+                tasks: [
+                    "Averbação e desaverbação de tempo de serviço",
+                    "Emissão de certidões/averbação de tempo de serviço",
+                    "Informações funcionais históricas",
+                    "Instrução de processos com dados de tempo"
+                ],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-7084", icon: "phone" },
+                    { label: "E-mail", val: "tempodeservico.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CASF_ARQ": {
+                name: "CASF - Arquivo de Pessoal",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
+                when: "Procure para acessar documentos físicos ou digitais da sua pasta funcional.",
+                tasks: [
+                    "Gestão do arquivo funcional físico e digital",
+                    "Digitalização e organização de pastas",
+                    "Consulta à pasta funcional do servidor"
+                ],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8147", icon: "phone" },
+                    { label: "E-mail", val: "arquivodepessoal.progepe@ufpe.br", icon: "email" }
+                ]
+            },
+            "CASF_GERAL": {
+                name: "CASF - Coordenação Geral",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
+                when: "Assuntos gerais de assentamento não específicos e suporte administrativo.",
+                tasks: [
+                    "Gestão do PGD (Programa de Gestão e Desempenho)",
+                    "Assuntos gerais de assentamento não específicos",
+                    "Apoio administrativo à Coordenação"
+                ],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8673", icon: "phone" },
+                    { label: "E-mail", val: "casf.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "CAPE": {
-                name: "CAPE - Aposentadoria e Pensão",
-                hierarchy: "Diretoria de Administração de Pessoal",
-                when: "Procure ao final da carreira ou para dependentes de servidores falecidos.",
-                tasks: ["Aposentadoria", "Abono de Permanência", "Pensão Civil e Auxílio Funeral", "Análise Funcional (NAF)"],
+                name: "CAPE - Coordenação de Aposentadoria e Pensão",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
+                when: "Ao final da carreira ou para dependentes de servidores falecidos.",
+                tasks: [
+                    "Instrução de processos de Aposentadoria e Pensão",
+                    "Abono de Permanência e Revisões",
+                    "Pagamento de Auxílio Funeral",
+                    "Análise Funcional (NAF) para aposentadoria",
+                    "Relacionamento com TCU (atos de provimento/vacância)"
+                ],
                 contacts: [
                     { label: "Geral", val: "(81) 2126-8675", icon: "phone" },
-                    { label: "Email", val: "cape.progepe@ufpe.br", icon: "email" }
+                    { label: "Aposentadoria", val: "(81) 2126-8175", icon: "phone" },
+                    { label: "Pensão", val: "(81) 2126-8674", icon: "phone" },
+                    { label: "NAF", val: "naf.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "CPC": {
-                name: "CPC - Provimentos e Concursos",
-                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                name: "CPC - Coordenação de Provimentos e Concursos",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas (DDP)",
                 when: "Procure para admissão, editais de concursos e saída definitiva do órgão.",
-                tasks: ["Concursos TAE e Docentes", "Posse e Nomeação", "Bolsas de Desenvolvimento", "Exoneração e Vacância"],
+                tasks: [
+                    "Editais de concursos e seleções para TAE e Docentes",
+                    "Contratação, nomeação e posse de novos servidores",
+                    "Vacância, exoneração e demissão",
+                    "Aproveitamentos, reintegração e recondução",
+                    "Gestão de bolsas de desenvolvimento"
+                ],
                 contacts: [
                     { label: "Geral", val: "(81) 2126-8672", icon: "phone" },
                     { label: "Admissão", val: "(81) 2126-7095", icon: "phone" },
-                    { label: "Email", val: "cpc.progepe@ufpe.br", icon: "email" }
+                    { label: "Bolsas", val: "(81) 2126-8676", icon: "phone" },
+                    { label: "E-mail", val: "cpc.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "FORMARE": {
                 name: "FORMARE - Escola de Formação",
-                hierarchy: "Diretoria de Desenvolvimento de Pessoas",
+                hierarchy: "Diretoria de Desenvolvimento de Pessoas (DDP)",
                 when: "Procure para capacitação, cursos e progressão por escolaridade.",
-                tasks: ["Cursos de Capacitação", "Incentivo à Qualificação", "Afastamento p/ Estudo", "Licença Capacitação"],
+                tasks: [
+                    "Gestão do Plano de Desenvolvimento de Pessoas (PDP)",
+                    "Oferta de ações formativas e certificação",
+                    "Progressão por Capacitação e Incentivo à Qualificação",
+                    "Afastamentos para estudo (Longa e Curta duração)",
+                    "Licença Capacitação e TRI"
+                ],
                 contacts: [
                     { label: "Geral", val: "(81) 2126-8669", icon: "phone" },
                     { label: "Qualificação", val: "(81) 2126-8671", icon: "phone" },
-                    { label: "Email", val: "formare.progepe@ufpe.br", icon: "email" }
+                    { label: "E-mail", val: "formare.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "NASS": {
-                name: "NASS - Atenção à Saúde do Servidor",
-                hierarchy: "Diretoria de Qualidade de Vida",
+                name: "NASS - Núcleo de Atenção à Saúde do Servidor",
+                hierarchy: "Diretoria de Qualidade de Vida (DQV)",
                 when: "Procure para perícias médicas e suporte à saúde física e mental.",
-                tasks: ["Perícia Médica Oficial", "Licença Saúde e Familiar", "Saúde Mental e Acolhimento", "Assistência Psicossocial"],
+                tasks: [
+                    "Perícia oficial em saúde e Licenças Médicas",
+                    "Assistência médica, nutricional e serviço social",
+                    "Saúde Mental: apoio e projetos universitários",
+                    "Acolhimento e cuidado ao servidor"
+                ],
                 contacts: [
                     { label: "Médico/Nutri", val: "(81) 2126-3944", icon: "phone" },
                     { label: "Saúde Mental", val: "(81) 2126-7577", icon: "phone" },
-                    { label: "Email", val: "nass.siass.progepe@ufpe.br", icon: "email" }
-                ]
-            },
-            "DQV_APOIO": {
-                name: "DQV - Apoio em Qualidade de Vida",
-                hierarchy: "Diretoria de Qualidade de Vida",
-                when: "Procure para benefícios indiretos, como planos de saúde e convênios.",
-                tasks: ["Planos de Saúde e Odonto", "Ressarcimento Per Capita", "Clube do Desconto", "Serviço Voluntário"],
-                contacts: [
-                    { label: "Telefone", val: "(81) 2126-8190", icon: "phone" },
-                    { label: "WhatsApp", val: "2126-8189", icon: "phone" },
-                    { label: "Email", val: "apoiodqv.progepe@ufpe.br", icon: "email" }
+                    { label: "E-mail", val: "nass.siass.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "SESST": {
-                name: "SESST - Segurança do Trabalho",
-                hierarchy: "Diretoria de Qualidade de Vida",
+                name: "SESST - Saúde e Segurança do Trabalho",
+                hierarchy: "Diretoria de Qualidade de Vida (DQV)",
                 when: "Procure para avaliação de riscos ambientais e equipamentos de proteção.",
-                tasks: ["Laudos Ambientais (LTCAT)", "Segurança do Trabalho", "Ergonomia", "Avaliação de Insalubridade (Técnica)"],
+                tasks: [
+                    "Avaliação de riscos ambientais nos locais de trabalho",
+                    "Laudos técnicos das condições ambientais (LTCAT)",
+                    "Laudos para licitação e apoio à perícia médica",
+                    "Treinamentos de segurança do trabalho",
+                    "Comitê de Ergonomia"
+                ],
                 contacts: [
                     { label: "Telefone", val: "(81) 2126-3992", icon: "phone" },
-                    { label: "Email", val: "sesst.siass.progepe@ufpe.br", icon: "email" }
+                    { label: "Email", val: "sesst.siass.progepe@ufpe.br", icon: "email" },
+                    { label: "Ergonomia", val: "comiteergonomia@ufpe.br", icon: "email" }
+                ]
+            },
+            "DQV_APOIO": {
+                name: "DQV - Divisão de Apoio em Qualidade de Vida",
+                hierarchy: "Diretoria de Qualidade de Vida (DQV)",
+                when: "Procure para benefícios indiretos, como planos de saúde e convênios.",
+                tasks: [
+                    "Gestão de Planos de Saúde (GEAP, CAPESAUDE, etc)",
+                    "Auxílio-Saúde (Ressarcimento Per capita)",
+                    "Clube do Desconto e Convênios",
+                    "Serviço Voluntário e CMEI Paulo Rosas"
+                ],
+                contacts: [
+                    { label: "Telefone", val: "(81) 2126-8190", icon: "phone" },
+                    { label: "WhatsApp", val: "(81) 2126-8189", icon: "phone" },
+                    { label: "E-mail", val: "apoiodqv.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "CACE": {
-                name: "CACE - Acumulação de Cargos",
+                name: "CACE - Coordenação de Acumulação de Cargos",
                 hierarchy: "Gabinete da Pró-Reitoria",
                 when: "Procure se tiver outro vínculo público ou privado e desejar verificar legalidade.",
-                tasks: ["Análise de Acumulação", "Pareceres de Carga Horária", "Legalidade de Vínculos"],
+                tasks: [
+                    "Análise de legalidade de acumulação de vínculos",
+                    "Verificação de compatibilidade de horários",
+                    "Pareceres sobre regime de trabalho",
+                    "Atendimento a processos de admissão"
+                ],
                 contacts: [
                     { label: "Geral", val: "(81) 2126-8172", icon: "phone" },
-                    { label: "Apoio", val: "(81) 2126-8003", icon: "phone" }
+                    { label: "Apoio", val: "(81) 2126-8003", icon: "phone" },
+                    { label: "E-mail", val: "cace.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "COMISSOES_OCUP": {
-                name: "Comissões Ocupacionais (COSAIP/CORAX)",
+                name: "Comissões (COSAIP e CORAX)",
                 hierarchy: "Gabinete da Pró-Reitoria",
                 when: "Procure para adicional de insalubridade, periculosidade ou raio-X.",
-                tasks: ["Adicional Insalubridade", "Adicional Periculosidade", "Gratificação de Raio-X", "Riscos Radioativos"],
+                tasks: [
+                    "Adicionais de Insalubridade e Periculosidade (COSAIP)",
+                    "Gratificação de Raios-X e Irradiação (CORAX)",
+                    "Análise e laudos para adicionais ocupacionais",
+                    "Orientação sobre processos administrativos de riscos"
+                ],
                 contacts: [
                     { label: "Geral", val: "(81) 2126-8003", icon: "phone" },
-                    { label: "COSAIP", val: "seccosaip.progepe@ufpe.br", icon: "email" }
+                    { label: "COSAIP", val: "seccosaip.progepe@ufpe.br", icon: "email" },
+                    { label: "CORAX", val: "corax.progepe@ufpe.br", icon: "email" }
                 ]
             },
             "GLCP": {
-                name: "GLCP - Legislação e Processos",
+                name: "GLCP - Gerência de Legislação",
                 hierarchy: "Gabinete da Pró-Reitoria",
                 when: "Procure para orientações normativas, processos judiciais ou ouvidoria.",
-                tasks: ["Processos Judiciais", "Demandas de Ouvidoria", "Parecer de Legislação", "Órgãos de Controle"],
+                tasks: [
+                    "Controle de processos judiciais e de Ouvidoria",
+                    "Atendimento a órgãos de controle (CGU, TCU, MPF)",
+                    "Orientação sobre legislação de pessoal",
+                    "Emissão de pareceres técnicos"
+                ],
                 contacts: [
                     { label: "Telefone", val: "(81) 2126-8112", icon: "phone" },
                     { label: "Email", val: "glcp.progepe@ufpe.br", icon: "email" }
@@ -552,9 +654,14 @@
             },
             "CAS": {
                 name: "CAS - Central de Atendimento ao Servidor",
-                hierarchy: "Diretoria de Administração de Pessoal",
+                hierarchy: "Diretoria de Administração de Pessoal (DAP)",
                 when: "Procure para dúvidas iniciais, acesso a sistemas (SouGov) ou prova de vida.",
-                tasks: ["Dúvidas SouGov / Sigepe", "Prova de Vida", "Informe de Rendimentos", "Identidade Funcional"],
+                tasks: [
+                    "Primeiro acesso e problemas no SouGov/Sigepe",
+                    "Prova de Vida de aposentados e pensionistas",
+                    "Informe de Rendimentos e Contra-cheques",
+                    "Orientações gerais sobre plataformas de gestão"
+                ],
                 contacts: [
                     { label: "Telefone", val: "(81) 2126-8166", icon: "phone" },
                     { label: "WhatsApp", val: "(81) 2126-8176", icon: "phone" },
@@ -565,7 +672,12 @@
                 name: "DTICOM - Tecnologia da Informação",
                 hierarchy: "Gabinete da Pró-Reitoria",
                 when: "Setor técnico para gestores sobre unidades e permissões em sistemas RH.",
-                tasks: ["Gestão de Unidades (RH)", "Habilitação SIAPE / SIGRH", "Extração de Relatórios", "Configuração de Vínculos"],
+                tasks: [
+                    "Gestão de unidades e designações no SIGRH",
+                    "Habilitação de usuários no SIAPE e SIGRH",
+                    "Habilitação de Homologador de Férias",
+                    "Extração de relatórios funcionais específicos"
+                ],
                 contacts: [
                     { label: "Telefone", val: "(81) 2126-8169", icon: "phone" },
                     { label: "Email", val: "dticom.progepe@ufpe.br", icon: "email" }
@@ -576,75 +688,92 @@
         const questions = [
             {
                 id: 1,
-                text: "Para onde devemos encaminhar sua dúvida?",
+                text: "Olá! Qual o tema principal da sua necessidade hoje?",
                 options: [
-                    { text: "Financeiro (Salário, Auxílios, Tributos)", next: 2 },
-                    { text: "Carreira (Avaliação, Remoção, Qualificação)", next: 3 },
-                    { text: "Saúde e Qualidade de Vida", next: 4 },
-                    { text: "Aposentadoria e História Funcional", next: 5 },
-                    { text: "Concursos e Ingresso/Saída", next: 6 },
-                    { text: "Frequência, Ponto e Férias", result: "CASF_FREQ" },
-                    { text: "Dúvidas Legais ou Ouvidoria", next: 8 }
+                    { text: "Pagamentos, Auxílios ou Conta Bancária", next: 2 },
+                    { text: "Carreira, Avaliação ou Mudança de Setor", next: 3 },
+                    { text: "Cursos, Progressão por Capacitação ou Afastamentos", result: "FORMARE" },
+                    { text: "Saúde, Perícia ou Planos de Saúde", next: 4 },
+                    { text: "Aposentadoria, Pensão ou Tempo de Serviço", next: 5 },
+                    { text: "Concursos, Ingresso ou Saída da UFPE", next: 6 },
+                    { text: "SouGov, Ponto, Férias ou Documentos", next: 7 },
+                    { text: "Legislação, Processos ou Riscos Ocupacionais", next: 8 }
                 ]
             },
             {
-                id: 2, 
-                text: "Qual o assunto financeiro específico?",
+                id: 2, // Financeiro
+                text: "Sobre questões financeiras, o que melhor descreve seu caso?",
                 options: [
-                    { text: "Pagamento, Banco ou Vale Transporte/Alimentação", result: "CPP" },
-                    { text: "Exercícios Anteriores ou Reposição Erário", result: "CPP" },
-                    { text: "Ressarcimento de Plano de Saúde (Per Capita)", result: "DQV_APOIO" },
-                    { text: "Insalubridade, Periculosidade ou Raio-X", result: "COMISSOES_OCUP" }
+                    { text: "Contracheque, Conta Bancária ou Vale Transporte", result: "CPP" },
+                    { text: "Dúvidas sobre Exercícios Anteriores ou Reposição ao Erário", result: "CPP" },
+                    { text: "Sou aposentado e quero isenção de IRRF por doença", result: "CAPE" },
+                    { text: "Ressarcimento de Plano de Saúde privado (Per Capita)", result: "DQV_APOIO" },
+                    { text: "Adicional de Insalubridade, Periculosidade ou Raio-X", result: "COMISSOES_OCUP" },
+                    { text: "Tenho mais de um vínculo público (Acumulação)", result: "CACE" }
                 ]
             },
             {
-                id: 3, 
-                text: "Sobre sua carreira ou trajetória atual:",
+                id: 3, // Carreira
+                text: "Sobre sua trajetória e movimentação na UFPE:",
                 options: [
-                    { text: "Mudar de Unidade ou Relotação", result: "CADMP_MOV" },
-                    { text: "Progressão por Mérito ou Estágio Probatório", result: "CADMP_AVAL" },
-                    { text: "Cursos de Capacitação ou Incentivo Qualificação", result: "FORMARE" },
-                    { text: "Afastamento para estudo (Pós/Mestrado)", result: "FORMARE" }
+                    { text: "Mudar de setor, Remoção, Redistribuição ou Exercício Provisório", result: "CADMP_MOV" },
+                    { text: "Licença para tratar de Interesse Particular ou Acompanhar Cônjuge", result: "CADMP_MOV" },
+                    { text: "Avaliação de Desempenho, Estágio Probatório ou Mérito", result: "CADMP_AVAL" },
+                    { text: "Incentivo à Qualificação ou Progressão por Capacitação", result: "FORMARE" }
                 ]
             },
             {
-                id: 4, 
-                text: "Sobre Saúde e Bem-estar:",
+                id: 4, // Saúde
+                text: "No âmbito da Saúde e Qualidade de Vida:",
                 options: [
-                    { text: "Licença Médica ou Perícia", result: "NASS" },
-                    { text: "Suporte Psicológico ou Saúde Mental", result: "NASS" },
-                    { text: "Segurança do Trabalho ou Ergonomia", result: "SESST" },
-                    { text: "Planos de Saúde ou Odonto", result: "DQV_APOIO" }
+                    { text: "Marcar Perícia, Licença Saúde ou Acompanhamento Familiar", result: "NASS" },
+                    { text: "Consultas médicas, nutricionais ou sociais no NASS", result: "NASS" },
+                    { text: "Saúde Mental: apoio, acolhimento ou projetos", result: "NASS" },
+                    { text: "Segurança do trabalho, EPIs ou Laudos de Riscos de Ambiente", result: "SESST" },
+                    { text: "Planos de Saúde (GEAP, etc) ou Ressarcimento Per Capita", result: "DQV_APOIO" }
                 ]
             },
             {
-                id: 5, 
-                text: "Sobre sua história funcional ou previdência:",
+                id: 5, // Aposentadoria
+                text: "Sobre Aposentadoria, Pensão e História Funcional:",
                 options: [
-                    { text: "Aposentadoria ou Abono Permanência", result: "CAPE" },
-                    { text: "Pensão ou Auxílio Funeral", result: "CAPE" },
-                    { text: "Averbar Tempo Externo ou Certidão de Tempo", result: "CASF_INFO" },
-                    { text: "Consultar minha Pasta Funcional (Arquivo)", result: "CASF_ARQ" }
+                    { text: "Quero me aposentar ou pedir Abono de Permanência", result: "CAPE" },
+                    { text: "Solicitar Pensão por Morte ou Auxílio Funeral", result: "CAPE" },
+                    { text: "Trazer tempo de serviço externo (Averbação)", result: "CASF_INFO" },
+                    { text: "Certidões de tempo de serviço ou Declarações de cargo", result: "CASF_INFO" },
+                    { text: "Ver minha pasta funcional (física ou digital)", result: "CASF_ARQ" }
                 ]
             },
             {
-                id: 6, 
-                text: "Vínculos e Concursos:",
+                id: 6, // Ingresso/Egresso
+                text: "Sobre vinculação à UFPE (Entrada ou Saída):",
                 options: [
-                    { text: "Editais, Nomeação e Posse", result: "CPC" },
-                    { text: "Bolsas ou Estágios", result: "CPC" },
-                    { text: "Sair da UFPE (Exoneração/Vacância)", result: "CPC" },
-                    { text: "Mais de um Cargo (Acumulação)", result: "CACE" }
+                    { text: "Editais de Concursos para Técnicos ou Docentes", result: "CPC" },
+                    { text: "Acabei de passar no concurso: Nomeação e Posse", result: "CPC" },
+                    { text: "Contratos temporários, substitutos ou bolsas", result: "CPC" },
+                    { text: "Sair da UFPE (Exoneração ou Vacância)", result: "CPC" }
                 ]
             },
             {
-                id: 8, 
-                text: "Administrativo e Legal:",
+                id: 7, // Atendimento/Rotina
+                text: "Sobre sistemas e rotina diária:",
                 options: [
-                    { text: "Processos Judiciais ou Questões Normativas", result: "GLCP" },
-                    { text: "Dúvidas sobre o SouGov ou Prova de Vida", result: "CAS" },
-                    { text: "Ouvidoria da PROGEPE", result: "GLCP" },
-                    { text: "Acesso a sistemas de RH (Para Gestores)", result: "DTICOM" }
+                    { text: "Problemas com SouGov, Sigac, Primeiro Acesso ou Prova de Vida", result: "CAS" },
+                    { text: "Marcação ou alteração de Férias e PGD", result: "CASF_FREQ" },
+                    { text: "Ponto Eletrônico: dúvidas, faltas ou ajustes", result: "CASF_FREQ" },
+                    { text: "Licenças (Maternidade, Gala, Nojo, Prêmio, etc)", result: "CASF_FREQ" },
+                    { text: "Afastamento a Serviço", result: "CASF_FREQ" },
+                    { text: "Habilitação de usuários em sistemas (SIAPE/SIGRH)", result: "DTICOM" }
+                ]
+            },
+            {
+                id: 8, // Jurídico/Riscos
+                text: "Para assuntos administrativos, jurídicos e de riscos:",
+                options: [
+                    { text: "Processos Judiciais, Ouvidoria ou MPF/TCU/CGU", result: "GLCP" },
+                    { text: "Pareceres sobre legislação de pessoal", result: "GLCP" },
+                    { text: "Laudos de Insalubridade, Periculosidade ou Raio-X", result: "COMISSOES_OCUP" },
+                    { text: "Acumulação de Cargos e conflito de interesses", result: "CACE" }
                 ]
             }
         ];
